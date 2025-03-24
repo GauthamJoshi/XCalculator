@@ -24,19 +24,21 @@ function Calculator() {
         setResult('Error');
         return;
       }
-      if (input.includes('/0/0')) {
+
+      // Handle specific edge cases
+      if (input.includes('/0/0') || input === '0/0') {
         setResult('NaN');
         return;
       }
-      const evaluated = eval(input);
 
       if (/\/0(?!\.)/.test(input)) {
         setResult('Infinity');
       } else {
+        const evaluated = eval(input);
         setResult(evaluated);
+        setInput(evaluated.toString());
       }
 
-      setInput(evaluated.toString());
     } catch (e) {
       setResult('Error');
     }
@@ -68,7 +70,7 @@ function Calculator() {
         <button onClick={() => appendInput('0')} className="btn zero">0</button>
         <button onClick={() => appendInput('.')} className="btn">.</button>
       </div>
-      <div id="result" className="result-display">{input}</div>
+      <div id="result" className="result-display">{result}</div>
     </div>
   );
 }
