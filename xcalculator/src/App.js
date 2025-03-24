@@ -68,7 +68,7 @@ function Calculator() {
         <button onClick={() => appendInput('0')} className="btn zero">0</button>
         <button onClick={() => appendInput('.')} className="btn">.</button>
       </div>
-      <div id="result" className="result-display">{result}</div>
+      <div id="result" className="result-display">{input}</div>
     </div>
   );
 }
