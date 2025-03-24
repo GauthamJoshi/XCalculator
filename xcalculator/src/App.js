@@ -24,11 +24,14 @@ function Calculator() {
         setResult('Error');
         return;
       }
-      const expression = input;
-      const evaluated = eval(expression);
+      if (input.includes('/0/0')) {
+        setResult('NaN');
+        return;
+      }
+      const evaluated = eval(input);
 
-      if (expression.includes('/0')) {
-        setResult(expression.includes('/0/0') ? 'NaN' : 'Infinity');
+      if (/\/0(?!\.)/.test(input)) {
+        setResult('Infinity');
       } else {
         setResult(evaluated);
       }
